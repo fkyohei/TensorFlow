@@ -9,6 +9,19 @@
 (tensorflow) ~  ᐅ pip install --upgrade https://storage.googleapis.com/tensorflow/mac/tensorflow-0.5.0-py2-none-any.whl
 ```
 
+- activate tensorflow  
+
+```sh
+~  ᐅ source ~/tensorflow/bin/activate
+```
+
+- deactivate tensorflow  
+
+```sh
+(tensorflow) ~/Documents/tensorflow ᐅ deactivate
+```
+
+
 ## Tensorflowの計算処理
 Tensorflowの計算処理はグラフで表される。  
 (グラフ・・・NodeとEdgeで表現されるデータ構造の一種)  
