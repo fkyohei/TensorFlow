@@ -1,12 +1,14 @@
 # Tensorflow
 
 ## install
+- インストール
+
 ```sh
 ~  ᐅ sudo easy_install pip
 ~  ᐅ sudo pip install --upgrade virtualenv
 ~  ᐅ virtualenv --system-site-packages ~/tensorflow
 ~  ᐅ source ~/tensorflow/bin/activate
-(tensorflow) ~  ᐅ pip install --upgrade https://storage.googleapis.com/tensorflow/mac/tensorflow-0.5.0-py2-none-any.whl
+(tensorflow) ~  ᐅ pip install --upgrade https://storage.googleapis.com/tensorflow/mac/tensorflow-0.7.1-cp27-none-any.whl
 ```
 
 - activate tensorflow  
@@ -80,6 +82,64 @@ hello, tensorflow!!
 **c = a + b**は計算式を定義しているだけで、ここでは計算を行っていない。あくまで計算の処理はSessionに投入した時に行われる。
 ## MNIST For ML Beginners
 (TensorFlow公式チュートリアル)  
+※ MNIST・・・28x28ピクセル、70000サンプルの数字の手書き画像データ(Mixed National Institute of Standards and Technology database)
+
+### サンプルコードを含むtensorflowのソースコードを取得
+```sh
+ᐅ git clone -b r0.7 --recurse-submodules https://github.com/tensorflow/tensorflow
+```
+
+### サンプル実行
+```sh
+ᐅ python tensorflow/examples/tutorials/mnist/fully_connected_feed.py
+Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
+Extracting data/train-images-idx3-ubyte.gz
+Successfully downloaded train-labels-idx1-ubyte.gz 28881 bytes.
+Extracting data/train-labels-idx1-ubyte.gz
+Successfully downloaded t10k-images-idx3-ubyte.gz 1648877 bytes.
+Extracting data/t10k-images-idx3-ubyte.gz
+Successfully downloaded t10k-labels-idx1-ubyte.gz 4542 bytes.
+Extracting data/t10k-labels-idx1-ubyte.gz
+Step 0: loss = 2.31 (0.034 sec)
+Step 100: loss = 2.16 (0.005 sec)
+Step 200: loss = 1.97 (0.005 sec)
+Step 300: loss = 1.65 (0.005 sec)
+Step 400: loss = 1.36 (0.005 sec)
+Step 500: loss = 0.97 (0.005 sec)
+Step 600: loss = 0.85 (0.005 sec)
+Step 700: loss = 0.79 (0.005 sec)
+Step 800: loss = 0.68 (0.005 sec)
+Step 900: loss = 0.53 (0.005 sec)
+Training Data Eval:
+  Num examples: 55000  Num correct: 47109  Precision @ 1: 0.8565
+Validation Data Eval:
+  Num examples: 5000  Num correct: 4326  Precision @ 1: 0.8652
+Test Data Eval:
+  Num examples: 10000  Num correct: 8665  Precision @ 1: 0.8665
+Step 1000: loss = 0.63 (0.017 sec)
+Step 1100: loss = 0.52 (0.113 sec)
+Step 1200: loss = 0.50 (0.005 sec)
+Step 1300: loss = 0.53 (0.005 sec)
+Step 1400: loss = 0.30 (0.005 sec)
+Step 1500: loss = 0.41 (0.005 sec)
+Step 1600: loss = 0.37 (0.005 sec)
+Step 1700: loss = 0.47 (0.005 sec)
+Step 1800: loss = 0.35 (0.005 sec)
+Step 1900: loss = 0.33 (0.005 sec)
+Training Data Eval:
+  Num examples: 55000  Num correct: 49026  Precision @ 1: 0.8914
+Validation Data Eval:
+  Num examples: 5000  Num correct: 4512  Precision @ 1: 0.9024
+Test Data Eval:
+  Num examples: 10000  Num correct: 8991  Precision @ 1: 0.8991
+```
+
+## 学習結果を可視化
+※ 絶対パスで指定
+
+```sh
+ᐅ tensorboard --logdir=/Users/fujisakikyo/Documents/tensorflow_study/tensorFlow/data
+```
 
 
 ## ref
