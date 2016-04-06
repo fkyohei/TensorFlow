@@ -82,7 +82,12 @@ hello, tensorflow!!
 **c = a + b**は計算式を定義しているだけで、ここでは計算を行っていない。あくまで計算の処理はSessionに投入した時に行われる。
 ## MNIST For ML Beginners
 (TensorFlow公式チュートリアル)  
-※ MNIST・・・28x28ピクセル、70000サンプルの数字の手書き画像データ(Mixed National Institute of Standards and Technology database)
+※ [MNIST](http://yann.lecun.com/exdb/mnist/)・・・28x28ピクセル、70000サンプルの数字の手書き画像データ(Mixed National Institute of Standards and Technology database)  
+機械学習の"Hello World"的存在  
+画像にはそれぞれどの数字を示すかのラベルが付与されている
+
+手書きの数字画像を見て、何の数字が書かれているかを予測するチュートリアル  
+
 
 ### サンプルコードを含むtensorflowのソースコードを取得
 ```sh
@@ -134,6 +139,10 @@ Test Data Eval:
   Num examples: 10000  Num correct: 8991  Precision @ 1: 0.8991
 ```
 
+1. MNISTデータをダウンロード  
+データは訓練データが55,000データ・ポイント, テストデータが10,000データポイント, バリデーションデータが5,000データポイントの3つに分かれている。  
+学習内容が一般化されているかを確認するために、この分割(訓練データとテストデータに分割すること)が重要。
+
 ## 学習結果を可視化
 ※ 絶対パスで指定
 
@@ -146,3 +155,5 @@ Test Data Eval:
 [http://qiita.com/shu223/items/a4fc17eb3356a6068553](http://qiita.com/shu223/items/a4fc17eb3356a6068553)  
 [http://dev.classmethod.jp/machine-learning/tensorflow-hello-world/](http://dev.classmethod.jp/machine-learning/tensorflow-hello-world/)  
 [http://www.slideshare.net/masuwo3/tensorflow](http://www.slideshare.net/masuwo3/tensorflow)
+[https://www.tensorflow.org/versions/r0.7/tutorials/mnist/beginners/index.html](https://www.tensorflow.org/versions/r0.7/tutorials/mnist/beginners/index.html)
+[http://qiita.com/KojiOhki/items/ff6ae04d6cf02f1b6edf](http://qiita.com/KojiOhki/items/ff6ae04d6cf02f1b6edf)
