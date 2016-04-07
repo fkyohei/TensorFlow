@@ -23,6 +23,9 @@
 (tensorflow) ~/Documents/tensorflow ᐅ deactivate
 ```
 
+## Tensorflowとは
+2015/11にオープンソース化されたGoogleの機械学習ライブラリ  
+基本的にはpythonを使用して操作するが、バックエンドはC++で計算している
 
 ## Tensorflowの計算処理
 Tensorflowの計算処理はグラフで表される。  
@@ -139,9 +142,30 @@ Test Data Eval:
   Num examples: 10000  Num correct: 8991  Precision @ 1: 0.8991
 ```
 
-1. MNISTデータをダウンロード  
+- MNISTデータをダウンロード  
+
 データは訓練データが55,000データ・ポイント, テストデータが10,000データポイント, バリデーションデータが5,000データポイントの3つに分かれている。  
-学習内容が一般化されているかを確認するために、この分割(訓練データとテストデータに分割すること)が重要。
+学習内容が一般化されているかを確認するために、この分割(訓練データとテストデータに分割すること)が重要。  
+(訓練データもテストデータも)データは画像とラベルの両方を持つが、画像をxs, ラベルをysとして表す。  
+各画像は28x28ピクセルで、大きな配列として解釈することができるので、784(28x28)のベクトルを配列を使ってフラットにすることができる。(画像間で一貫していれば、フラットにする方法はそれほど重要ではない。)  
+データをフラットにする際、画像の2次元構造の情報を捨てることになる。一般的には2次元構造のデータを使用するため捨てないで処理を行うが、このチュートリアルでは「ソフトマックス回帰」という単純な方法をしようするため捨ててしまう。
+
+![MNIST画像配列化例](https://www.tensorflow.org/versions/r0.7/images/MNIST-Matrix.png)
+結果、学習データ(55,000枚)のxsは、[55000, 784]の形状を持つtensor(n次元配列)となる。1次元目は画像のインデックス、2次元目は各画像のピクセルのインデックスを表し、tensorの各要素は、特定の画像の特定のピクセルのための、0~1間のピクセル強度を表す。  
+
+![MNIST画像フラット例](https://www.tensorflow.org/versions/r0.7/images/mnist-train-xs.png)
+学習データ(55,000枚)のysは、このチュートリアルでは「1 - ホットベクトル」を使って表す。「1 - ホットベクトル」とは、ほとんどの次元が0で、1つの次元だけ1であるベクトルを表す。例えば3は、[0,0,0,1,0,0,0,0,0,0]となる。結果として、floatの[55000, 10]の形状を持つtensorとなる。
+
+![MNIST画像フラット例2](https://www.tensorflow.org/versions/r0.7/images/mnist-train-ys.png)
+
+ここまでで実際にモデルを作成する準備が終了
+
+- ソフトマックス回帰  
+
+MNIST内の画像はどの数値が書かれているかはわからないものの、数値が書かれていることは前提としてわかっていて、画像を見て各々の数字である確率を与えることが出来るようにしたい。(例. とあるモデルが9の画像を見て、80%の確信度で9、上部が丸になっているので5%の確信度で8、その他数値はわずかな確信度)  
+ソフトマックス回帰は自然で単純なモデルで、古典的なケース。より洗練されたモデルを使用する場合でも、最後のステップはソフトマックスのレイヤーになる。  
+ソフトマックス回帰には、2つのステップがある。最初に、入力がある特定のクラスに含まれる証拠を足しあわせ、次に、証拠を確率に変換する。  
+証拠を合計するために、ピクセル強度の加重和(重み付けをした和)を行う。
 
 ## 学習結果を可視化
 ※ 絶対パスで指定
@@ -157,3 +181,4 @@ Test Data Eval:
 [http://www.slideshare.net/masuwo3/tensorflow](http://www.slideshare.net/masuwo3/tensorflow)
 [https://www.tensorflow.org/versions/r0.7/tutorials/mnist/beginners/index.html](https://www.tensorflow.org/versions/r0.7/tutorials/mnist/beginners/index.html)
 [http://qiita.com/KojiOhki/items/ff6ae04d6cf02f1b6edf](http://qiita.com/KojiOhki/items/ff6ae04d6cf02f1b6edf)
+[http://qiita.com/haminiku/items/36982ae65a770565458d](http://qiita.com/haminiku/items/36982ae65a770565458d)
