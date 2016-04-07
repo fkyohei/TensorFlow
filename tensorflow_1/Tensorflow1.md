@@ -170,7 +170,7 @@ MNIST内の画像はどの数値が書かれているかはわからないもの
 
 ![証拠](https://www.tensorflow.org/versions/master/images/softmax-weights.png)
 また、バイアスを証拠に追加する。  
-最終的に、与えられた入力$$ x $$がクラス$$ i $$であるための証拠は下記となる。
+最終的に、与えられた入力$$x$$がクラス$$i$$であるための証拠は下記となる。
 
 $${\text{evidence}_i = \sum_j W_{i,~ j} x_j + b_i}$$  
 
