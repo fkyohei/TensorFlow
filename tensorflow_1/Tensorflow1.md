@@ -62,23 +62,32 @@ sess = tf.Session(config=config)
 
 # 0次元の行列データとして、"hello, tensorflow!!"をTensorに格納
 hello = tf.constant('hello, tensorflow!!')
+# Tensorを出力してみる
+print hello
 # TensorをSessionに渡して、計算結果としてその値をそのまま出力
 print sess.run(hello)
 
 # 0次元の行列データとして、10, 32をTensorに格納
 a = tf.constant(10)
 b = tf.constant(32)
+# Tensorを出力してみる
+print a
+print b
 # 計算式を定義(Tensor)
 c = a + b
+# Tensorを出力してみる
+print c
 # TensorをSessionに渡して、計算処理を行い、結果を出力
 print sess.run(c)
 ```
 
 ```sh
-(tensorflow) ~/Documents/tensorflow  ᐅ python helloworld.py
-I tensorflow/core/common_runtime/local_device.cc:25] Local device intra op parallelism threads: 4
-I tensorflow/core/common_runtime/local_session.cc:45] Local session inter op parallelism threads: 4
+(tensorflow) ~/Documents/tensorflow_study/TensorFlowStudy (master ✘)✹ ᐅ python tensorflow_1/helloworld.py
+Tensor("Const:0", shape=(), dtype=string)
 hello, tensorflow!!
+Tensor("Const_1:0", shape=(), dtype=int32)
+Tensor("Const_2:0", shape=(), dtype=int32)
+Tensor("add:0", shape=(), dtype=int32)
 42
 ```
 
