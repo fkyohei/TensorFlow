@@ -175,13 +175,36 @@ MNIST内の画像はどの数値が書かれているかはわからないもの
 ソフトマックス回帰は自然で単純なモデルで、古典的なケース。より洗練されたモデルを使用する場合でも、最後のステップはソフトマックスのレイヤーになる。  
 ソフトマックス回帰には、2つのステップがある。最初に、入力がある特定のクラスに含まれる証拠を足しあわせ、次に、証拠を確率に変換する。  
 証拠を合計するために、ピクセル強度の加重和(重み付けをした和)を行う。クラスに含まれる画像を支持する証拠を正、反する証拠を負とする。  
-次の画像は、正の重みを青、負の重みを赤で表したもの。
+次の画像は、正の重みを青、負の重みを赤で表したもの。  
+
+【重みの説明】  
+入力が出力に及ぼす影響の大きさを表す実数
 
 ![証拠](https://www.tensorflow.org/versions/master/images/softmax-weights.png)
 また、バイアスを証拠に追加する。  
 最終的に、与えられた入力$$x$$がクラス$$i$$であるための証拠は下記となる。
 
 $${\text{evidence}_i = \sum_j W_{i,~ j} x_j + b_i}$$  
+
+【バイアスの説明】
+$$\begin{eqnarray}
+  \mbox{output} & = & \left\{ \begin{array}{ll}
+      0 & \mbox{if } \sum_j w_j x_j \leq \mbox{ threshold} \\
+      1 & \mbox{if } \sum_j w_j x_j > \mbox{ threshold}
+      \end{array} \right.
+\tag{1}\end{eqnarray}$$
+
+↓ 変換
+
+$$\begin{eqnarray}
+  \mbox{output} & = & \left\{ \begin{array}{ll}
+      0 & \mbox{if } \sum_j w_j x_j + \mbox{ threshold} \leq 0 \\
+      1 & \mbox{if } \sum_j w_j x_j + \mbox{ threshold} > 0
+      \end{array} \right.
+\tag{1}\end{eqnarray}$$
+
+バイアス = -threshold(閾値...しきい値)
+
 
 ここで$$W_{i}$$は重み、$$b_{i}$$はクラス$$i$$のバイアス、$$j$$は入力画像$$x$$内のピクセルを加算するためのインデックスを表す。さらにソフトマックス関数を使用して、証拠の合計を予測確率$$y$$に変換する。
 
@@ -256,6 +279,9 @@ y = tf.nn.softmax(tf.matmul(x,W) + b)
 
 - 訓練
 
+モデルを訓練するために、良いモデルとは何を意味するかを定義する必要がある。機械学習では実際には、悪いモデルとは何を意味するかを定義し(コストや損失と呼ぶ)、悪さを最小限に抑えようとする。  
+一つの非常に一般的なコスト関数は「交差エントロピー」です。
+
 - モデルの評価
 
 ## 学習結果を可視化
@@ -274,4 +300,6 @@ y = tf.nn.softmax(tf.matmul(x,W) + b)
 [https://www.tensorflow.org/versions/r0.7/tutorials/mnist/beginners/index.html](https://www.tensorflow.org/versions/r0.7/tutorials/mnist/beginners/index.html)
 [http://qiita.com/KojiOhki/items/ff6ae04d6cf02f1b6edf](http://qiita.com/KojiOhki/items/ff6ae04d6cf02f1b6edf)  
 [http://qiita.com/haminiku/items/36982ae65a770565458d](http://qiita.com/haminiku/items/36982ae65a770565458d)  
-[http://d.hatena.ne.jp/sugyan/](http://d.hatena.ne.jp/sugyan/)
+[http://d.hatena.ne.jp/sugyan/](http://d.hatena.ne.jp/sugyan/)  
+[http://nnadl-ja.github.io/nnadl_site_ja/index.html](http://nnadl-ja.github.io/nnadl_site_ja/index.html)  
+[http://qiita.com/tawago/items/c977c79b76c5979874e8](http://qiita.com/tawago/items/c977c79b76c5979874e8)
