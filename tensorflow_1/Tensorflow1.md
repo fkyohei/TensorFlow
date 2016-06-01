@@ -186,26 +186,6 @@ MNIST内の画像はどの数値が書かれているかはわからないもの
 
 $${\text{evidence}_i = \sum_j W_{i,~ j} x_j + b_i}$$  
 
-【バイアスの説明】
-$$\begin{eqnarray}
-  \mbox{output} & = & \left\{ \begin{array}{ll}
-      0 & \mbox{if } \sum_j w_j x_j \leq \mbox{ threshold} \\
-      1 & \mbox{if } \sum_j w_j x_j > \mbox{ threshold}
-      \end{array} \right.
-\tag{1}\end{eqnarray}$$
-
-↓ 変換
-
-$$\begin{eqnarray}
-  \mbox{output} & = & \left\{ \begin{array}{ll}
-      0 & \mbox{if } \sum_j w_j x_j + \mbox{ threshold} \leq 0 \\
-      1 & \mbox{if } \sum_j w_j x_j + \mbox{ threshold} > 0
-      \end{array} \right.
-\tag{1}\end{eqnarray}$$
-
-バイアス = -threshold(閾値...しきい値)
-
-
 ここで $W_{i}$ は重み、 $b_{i}$ はクラス $i$ のバイアス、 $j$ は入力画像 $x$ 内のピクセルを加算するためのインデックスを表す。さらにソフトマックス関数を使用して、証拠の合計を予測確率 $y$ に変換する。
 
 $${y = \text{softmax}(\text{evidence})}$$
