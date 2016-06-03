@@ -177,9 +177,6 @@ MNIST内の画像はどの数値が書かれているかはわからないもの
 証拠を合計するために、ピクセル強度の加重和(重み付けをした和)を行う。クラスに含まれる画像を支持する証拠を正、反する証拠を負とする。  
 次の画像は、正の重みを青、負の重みを赤で表したもの。  
 
-【重みの説明】  
-入力が出力に及ぼす影響の大きさを表す実数
-
 ![証拠](https://www.tensorflow.org/versions/master/images/softmax-weights.png)
 また、バイアスを証拠に追加する。  
 最終的に、与えられた入力 $x$ がクラス $i$ であるための証拠は下記となる。
@@ -283,3 +280,7 @@ y = tf.nn.softmax(tf.matmul(x,W) + b)
 [http://d.hatena.ne.jp/sugyan/](http://d.hatena.ne.jp/sugyan/)  
 [http://nnadl-ja.github.io/nnadl_site_ja/index.html](http://nnadl-ja.github.io/nnadl_site_ja/index.html)  
 [http://qiita.com/tawago/items/c977c79b76c5979874e8](http://qiita.com/tawago/items/c977c79b76c5979874e8)
+
+わかりやすそう  
+[http://qiita.com/EtsuroHONDA/items/02635dc3026e29f3cb41](http://qiita.com/EtsuroHONDA/items/02635dc3026e29f3cb41)  
+[http://qiita.com/EtsuroHONDA/items/212ca0ece3e5bacf89e9](http://qiita.com/EtsuroHONDA/items/212ca0ece3e5bacf89e9)
